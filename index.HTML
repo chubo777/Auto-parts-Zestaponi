@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ავტონაწილები ჩინეთიდან | AutoParts Zestaponi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- ძირითადი სტილები --- */
+        :root {
+            --primary: #0f172a; /* მუქი ლურჯი */
+            --accent: #d4af37;  /* ოქროსფერი */
+            --light: #f1f5f9;
+            --text: #334155;
+            --whatsapp: #25D366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        body { background-color: var(--light); color: var(--text); line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* --- ჰედერი --- */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+        .logo span { color: white; }
+
+        .lang-switch button {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 5px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .lang-switch button.active { background: var(--accent); color: var(--primary); }
+
+        /* --- მთავარი ბანერი (Hero) --- */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .btn-gold { background: var(--accent); color: var(--primary); }
+        .btn-gold:hover { background: white; }
+
+        /* --- უპირატესობები --- */
+        .features { padding: 50px 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; text-align: center; }
+        .feature-box { flex: 1 1 300px; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+        
+        /* აიკონების სტილი */
+        .feature-box i { font-size: 2.5rem; color: var(--accent); margin-bottom: 15px; }
+        
+        /* საქართველოს ფოსტის ლოგოს სტილი */
+        .feature-logo { height: 50px; width: auto; margin-bottom: 15px; object-fit: contain; }
+
+        /* --- პროდუქტები --- */
+        .products-section { padding: 50px 0; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--primary); }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        
+        .product-img { width: 100%; height: 200px; object-fit: cover; background: #ddd; }
+        
+        .product-info { padding: 20px; }
+        .product-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; color: var(--primary); }
+        .product-desc { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
+        .product-price { font-size: 1.2rem; color: var(--accent); font-weight: bold; display: block; margin-bottom: 15px; }
+
+        .btn-whatsapp-card {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--whatsapp);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .btn-whatsapp-card:hover { background: #1ebc57; }
+
+        /* --- კონტაქტი და ფუტერი --- */
+        .contact-section { background: var(--primary); color: white; padding: 50px 0; text-align: center; }
+        .contact-info { font-size: 1.2rem; margin-top: 20px; }
+        .contact-info i { color: var(--accent); margin-right: 10px; }
+        .contact-info a { color: white; }
+
+        /* მცურავი WhatsApp ღილაკი */
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--whatsapp);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 2000;
+        }
+        .float-wa:hover { transform: scale(1.1); }
+
+        /* მობილურისთვის */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .nav-wrapper { flex-direction: column; gap: 10px; }
+        }
+
+        /* ენების დამალვა/ჩვენება */
+        [lang="ru"] { display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo"><i class="fas fa-car-battery"></i> AutoParts<span>Zestaponi</span></div>
+            <div class="contact-header">
+                <i class="fas fa-phone"></i> <a href="tel:+995591232430" style="color:white;">+995 591 23 24 30</a>
+            </div>
+            <div class="lang-switch">
+                <button onclick="switchLang('ka')" id="btn-ka" class="active">GE</button>
+                <button onclick="switchLang('ru')" id="btn-ru">RU</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>
+                <span lang="ka">ავტონაწილები ჩინეთიდან - საუკეთესო ფასად</span>
+                <span lang="ru">Автозапчасти из Китая - Лучшие цены</span>
+            </h1>
+            <p>
+                <span lang="ka">ჩვენ გთავაზობთ უმაღლესი ხარისხის ნაწილებს პირდაპირ ჩინეთიდან. მდებარეობა: ზესტაფონი.</span>
+                <span lang="ru">Мы предлагаем запчасти высочайшего качества напрямую из Китая. Локация: Зестафони.</span>
+            </p>
+            <a href="https://wa.me/995591232430" class="btn btn-gold">
+                <i class="fab fa-whatsapp"></i> 
+                <span lang="ka">შეკვეთა WhatsApp-ით</span>
+                <span lang="ru">Заказать через WhatsApp</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="container features">
+        <div class="feature-box">
+            <i class="fas fa-shipping-fast"></i>
+            <h3><span lang="ka">სწრაფი ჩამოტანა</span><span lang="ru">Быстрая доставка</span></h3>
+            <p><span lang="ka">პირდაპირი რეისები ჩინეთიდან.</span><span lang="ru">Прямые рейсы из Китая.</span></p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-tags"></i>
+            <h3><span lang="ka">დაბალი ფასები</span><span lang="ru">Низкие цены</span></h3>
+            <p><span lang="ka">შუამავლების გარეშე.</span><span lang="ru">Без посредников.</span></p>
+        </div>
+        
+        <div class="feature-box">
+            <i class="fas fa-box-open"></i> 
+            <h3><span lang="ka">საქართველოს ფოსტა</span><span lang="ru">Почта Грузии</span></h3>
+            <p>
+                <span lang="ka">ვთანამშრომლობთ საქართველოს ფოსტასთან.</span>
+                <span lang="ru">Мы сотрудничаем с Почтой Грузии.</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="products-section container">
+        <h2 class="section-title">
+            <span lang="ka">პოპულარული ნაწილები</span>
+            <span lang="ru">Популярные запчасти</span>
+        </h2>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=500&q=60" alt="Engine" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <span lang="ka">ძრავის კომპლექტი</span>
+                        <span lang="ru">Комплект двигателя</span>
+                    </h3>
+                    <p class="product-desc">
+                        <span lang="ka">მაღალი ხარისხის ძრავის ნაწილები ყველა მოდელისთვის.</span>
+                        <span lang="ru">Высококачественные детали двигателя для всех моделей.</span>
+                    </p>
+                    <span class="product-price">₾ 150.00</span>
+                    <a href="https://wa.me/995591232430?text=გამარჯობა,%20მაინტერესებს%20ძრავის%20კომპლექტი" class="btn-whatsapp-card">
+                        <span lang="ka">შეკვეთა</span><span lang="ru">Заказать</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=500&q=60" alt="Brakes" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <span lang="ka">სამუხრუჭე ხუნდები</span>
+                        <span lang="ru">Тормозные колодки</span>
+                    </h3>
+                    <p class="product-desc">
+                        <span lang="ka">კერამიკული და სტანდარტული ხუნდები.</span>
+                        <span lang="ru">Керамические და სტანდარტული ხუნდები.</span>
+                    </p>
+                    <span class="product-price">₾ 45.00</span>
+                    <a href="https://wa.me/995591232430?text=გამარჯობა,%20მაინტერესებს%20სამუხრუჭე%20ხუნდები" class="btn-whatsapp-card">
+                        <span lang="ka">შეკვეთა</span><span lang="ru">Заказать</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=500&q=60" alt="Suspension" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">
+                        <span lang="ka">სავალი ნაწილები</span>
+                        <span lang="ru">Детали подвески</span>
+                    </h3>
+                    <p class="product-desc">
+                        <span lang="ka">ამორტიზატორები და გიტარები.</span>
+                        <span lang="ru">Амортизаторы и рычаги.</span>
+                    </p>
+                    <span class="product-price">₾ 80.00</span>
+                    <a href="https://wa.me/995591232430?text=გამარჯობა,%20მაინტერესებს%20სავალი%20ნაწილები" class="btn-whatsapp-card">
+                        <span lang="ka">შეკვეთა</span><span lang="ru">Заказать</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="contact-section">
+        <div class="container">
+            <h2>
+                <span lang="ka">დაგვიკავშირდით</span>
+                <span lang="ru">Свяжитесь с нами</span>
+            </h2>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 
+                    <span lang="ka">საქართველო, ზესტაფონი</span>
+                    <span lang="ru">Грузия, Зестафони</span>
+                </p>
+                <p><i class="fas fa-phone"></i> <a href="tel:+995591232430">+995 591 23 24 30</a></p>
+                <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/995591232430">WhatsApp Chat</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/995591232430" class="float-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function switchLang(lang) {
+            // ღილაკების სტილის შეცვლა
+            document.getElementById('btn-ka').classList.remove('active');
+            document.getElementById('btn-ru').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // ტექსტების დამალვა/გამოჩენა
+            const kaElements = document.querySelectorAll('[lang="ka"]');
+            const ruElements = document.querySelectorAll('[lang="ru"]');
+
+            if (lang === 'ka') {
+                kaElements.forEach(el => el.style.display = 'inline');
+                ruElements.forEach(el => el.style.display = 'none');
+                
+                // ბლოკური ელემენტებისთვის (არა inline)
+                document.querySelectorAll('h1 [lang="ka"], p [lang="ka"], h3 [lang="ka"]').forEach(el => el.style.display = 'block');
+            } else {
+                kaElements.forEach(el => el.style.display = 'none');
+                ruElements.forEach(el => el.style.display = 'inline');
+                
+                document.querySelectorAll('h1 [lang="ru"], p [lang="ru"], h3 [lang="ru"]').forEach(el => el.style.display = 'block');
+            }
+        }
+
+        // საიტის ჩატვირთვისას ქართული ენის დაყენება
+        document.addEventListener('DOMContentLoaded', () => {
+            switchLang('ka');
+        });
+    </script>
+</body>
+</html>
